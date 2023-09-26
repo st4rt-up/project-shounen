@@ -1,0 +1,240 @@
+[gd_scene load_steps=21 format=3 uid="uid://icxbjuws3ov4"]
+
+[ext_resource type="Texture2D" uid="uid://c82xuaodxay48" path="res://growlithe/attack_2_1.png" id="1_181xf"]
+[ext_resource type="Texture2D" uid="uid://ch60hnjbsnag1" path="res://growlithe/attack_2_2.png" id="2_gbo4t"]
+[ext_resource type="Texture2D" uid="uid://xt561iuhm2uh" path="res://growlithe/attack_2_3.png" id="3_fyeyp"]
+[ext_resource type="Texture2D" uid="uid://cidogyxtiik6h" path="res://growlithe/attack_2_4.png" id="4_bhkgd"]
+[ext_resource type="Texture2D" uid="uid://gy3iajvjb104" path="res://growlithe/run_2.png" id="5_tvh7s"]
+[ext_resource type="Texture2D" uid="uid://b31xtuchppbyc" path="res://growlithe/attack_2_5.png" id="6_fw650"]
+[ext_resource type="Texture2D" uid="uid://c6buw7kwpkudk" path="res://growlithe/attack_1_1.png" id="7_di06o"]
+[ext_resource type="Texture2D" uid="uid://dufnt3tn1yfv7" path="res://growlithe/attack_1_2.png" id="8_dwifu"]
+[ext_resource type="Texture2D" uid="uid://bbtbuxocvn2rv" path="res://growlithe/attack_1_3.png" id="9_em8k5"]
+[ext_resource type="Texture2D" uid="uid://ds1odf1tklh7s" path="res://growlithe/still_1.png" id="10_ahnel"]
+[ext_resource type="Texture2D" uid="uid://c0myn5aab0cy2" path="res://growlithe/still_2.png" id="11_ojghb"]
+[ext_resource type="Texture2D" uid="uid://cbbbgg40ni85k" path="res://growlithe/still_3.png" id="12_21bd5"]
+[ext_resource type="Texture2D" uid="uid://b1vsdefu811cy" path="res://growlithe/still_4.png" id="13_lj138"]
+[ext_resource type="Texture2D" uid="uid://bjbvqx3k4idne" path="res://growlithe/run_1.png" id="14_cty6k"]
+[ext_resource type="Texture2D" uid="uid://hldfpsmuwc4s" path="res://growlithe/run_3.png" id="15_x807g"]
+[ext_resource type="Texture2D" uid="uid://b56yceyad20ew" path="res://growlithe/run_4.png" id="16_ylgki"]
+
+[sub_resource type="GDScript" id="GDScript_vybby"]
+resource_name = "character"
+script/source = "extends CharacterBody2D
+
+const SPEED = 300.0
+
+signal state_changed
+signal direction_changed
+
+var current_state = States.IDLE
+
+enum States {
+	IDLE,
+	RUN,
+	ATTACK,
+	HURT
+}
+
+enum AttackStates {
+	STARTUP,
+	ACTIVE,
+	RECOVERY,
+	RECOVERY_CH
+}
+
+func _physics_process(delta):
+	match current_state:
+		States.IDLE:
+			idle()
+		States.RUN:
+			run()
+		States.ATTACK:
+			pass
+		States.HURT:
+			pass		
+	
+	move_and_slide()
+
+func change_state(new_state):
+	state_changed.emit(new_state, current_state)
+	current_state = new_state
+
+func idle():
+	var input_vector = Input.get_vector(\"move_left\", \"move_right\", \"move_up\", \"move_down\").normalized()
+	var directions_pressed = sqrt(input_vector.x * input_vector.x + input_vector.y * input_vector.y) > 0
+	
+	velocity.x = 0
+	velocity.y = 0
+	
+	if directions_pressed:
+		change_state(States.RUN)
+	
+func run():
+	var input_vector = Input.get_vector(\"move_left\", \"move_right\", \"move_up\", \"move_down\").normalized()
+	var directions_pressed = sqrt(input_vector.x * input_vector.x + input_vector.y * input_vector.y) > 0
+	
+	
+	velocity = input_vector * SPEED
+	direction_changed.emit(input_vector)
+	
+	if !directions_pressed:
+		change_state(States.IDLE)
+
+func attack_1():
+	pass
+	
+func attack_2():
+	pass
+	
+func attack_3():
+	pass
+"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yj425"]
+animations = [{
+"frames": [{
+"duration": 3.0,
+"texture": ExtResource("1_181xf")
+}, {
+"duration": 4.0,
+"texture": ExtResource("2_gbo4t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_fyeyp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_bhkgd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_tvh7s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_fw650")
+}],
+"loop": false,
+"name": &"attack_phys",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_di06o")
+}, {
+"duration": 2.0,
+"texture": ExtResource("8_dwifu")
+}, {
+"duration": 5.0,
+"texture": ExtResource("9_em8k5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_dwifu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_di06o")
+}],
+"loop": false,
+"name": &"attack_spec",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 0.8,
+"texture": ExtResource("10_ahnel")
+}, {
+"duration": 1.5,
+"texture": ExtResource("11_ojghb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_21bd5")
+}, {
+"duration": 2.0,
+"texture": ExtResource("13_lj138")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_cty6k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_tvh7s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_x807g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_ylgki")
+}],
+"loop": true,
+"name": &"run",
+"speed": 12.0
+}]
+
+[sub_resource type="GDScript" id="GDScript_tjx7v"]
+resource_name = "animation"
+script/source = "extends AnimatedSprite2D
+
+enum States {
+	IDLE,
+	RUN,
+	ATTACK_STARTUP,
+	ATTACK_SPECIAL,
+	ATTACK_PHYSICAL,
+	ATTACK_RECOVERY
+}
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	
+	pass
+
+
+func _on_character_body_2d_state_changed(new_state, old_state):
+	
+	match new_state:
+		States.RUN:
+			play(\"run\")
+		States.IDLE:
+			play(\"idle\")
+		States.ATTACK_PHYSICAL:
+			play(\"attack_phys\")
+		States.ATTACK_SPECIAL:
+			play(\"attack_spec\")
+
+func _on_character_body_2d_direction_changed(input_vector):
+			
+	if input_vector.x > 0:
+		flip_h = false
+	elif input_vector.x < 0:
+		flip_h = true
+		
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3uawo"]
+size = Vector2(48, 48)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+position = Vector2(-302, -157)
+scale = Vector2(0.994552, 0.994035)
+motion_mode = 1
+script = SubResource("GDScript_vybby")
+
+[node name="growlithe animations" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.01208, 0.996025)
+sprite_frames = SubResource("SpriteFrames_yj425")
+animation = &"run"
+autoplay = "idle"
+script = SubResource("GDScript_tjx7v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(-1.71127, 1.88607)
+shape = SubResource("RectangleShape2D_3uawo")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[connection signal="direction_changed" from="." to="growlithe animations" method="_on_character_body_2d_direction_changed"]
+[connection signal="state_changed" from="." to="growlithe animations" method="_on_character_body_2d_state_changed"]

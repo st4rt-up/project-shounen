@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6buw7kwpkudk"
-path="res://.godot/imported/attack_1_1.png-35d009d96cc019e14736597a95954a0c.ctex"
+uid="uid://bbtbuxocvn2rv"
+path="res://.godot/imported/attack_1_3.png-42c4efe1c2aed5208d5e05f22d6fecc3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/growlithe/attack_1_1.png"
-dest_files=["res://.godot/imported/attack_1_1.png-35d009d96cc019e14736597a95954a0c.ctex"]
+source_file="res://characters/growlithe/sprites/attack_1_3.png"
+dest_files=["res://.godot/imported/attack_1_3.png-42c4efe1c2aed5208d5e05f22d6fecc3.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxrffnk2yh1m8"
-path="res://.godot/imported/hit.png-7aa4cabcb04e459ac56a933aca6b8864.ctex"
+uid="uid://cbbbgg40ni85k"
+path="res://.godot/imported/still_3.png-9ad18de8d1de741ee0b80d04c3c460ed.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/growlithe/hit.png"
-dest_files=["res://.godot/imported/hit.png-7aa4cabcb04e459ac56a933aca6b8864.ctex"]
+source_file="res://characters/growlithe/sprites/still_3.png"
+dest_files=["res://.godot/imported/still_3.png-9ad18de8d1de741ee0b80d04c3c460ed.ctex"]
 
 [params]
 

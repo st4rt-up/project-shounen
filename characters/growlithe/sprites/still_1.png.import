@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ds1odf1tklh7s"
-path="res://.godot/imported/still_1.png-3945116fae1e84dceff5f24ebe21ad20.ctex"
+path="res://.godot/imported/still_1.png-0e1da3f06b86209902c1c8a9ba79881c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/growlithe/still_1.png"
-dest_files=["res://.godot/imported/still_1.png-3945116fae1e84dceff5f24ebe21ad20.ctex"]
+source_file="res://characters/growlithe/sprites/still_1.png"
+dest_files=["res://.godot/imported/still_1.png-0e1da3f06b86209902c1c8a9ba79881c.ctex"]
 
 [params]
 

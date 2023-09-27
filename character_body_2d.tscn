@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://icxbjuws3ov4"]
+[gd_scene load_steps=25 format=3 uid="uid://bbndp3guf6nrg"]
 
 [ext_resource type="Texture2D" path="res://growlithe/attack_2_1.png" id="1_181xf"]
 [ext_resource type="Texture2D" path="res://growlithe/attack_2_2.png" id="2_gbo4t"]
@@ -9,15 +9,17 @@
 [ext_resource type="Texture2D" path="res://growlithe/attack_1_1.png" id="7_di06o"]
 [ext_resource type="Texture2D" path="res://growlithe/attack_1_2.png" id="8_dwifu"]
 [ext_resource type="Texture2D" path="res://growlithe/attack_1_3.png" id="9_em8k5"]
+[ext_resource type="Texture2D" uid="uid://ddsy6e1un2f6e" path="res://characters/growlithe/sprites/faint.png" id="10_a38bm"]
 [ext_resource type="Texture2D" path="res://growlithe/still_1.png" id="10_ahnel"]
-[ext_resource type="Texture2D" uid="uid://ddsy6e1un2f6e" path="res://characters/growlithe/faint.png" id="10_h452r"]
 [ext_resource type="Texture2D" path="res://growlithe/still_2.png" id="11_ojghb"]
-[ext_resource type="Texture2D" uid="uid://cxrffnk2yh1m8" path="res://characters/growlithe/hit.png" id="11_wqfmh"]
+[ext_resource type="Texture2D" uid="uid://cxrffnk2yh1m8" path="res://characters/growlithe/sprites/hit.png" id="11_wqhbv"]
 [ext_resource type="Texture2D" path="res://growlithe/still_3.png" id="12_21bd5"]
 [ext_resource type="Texture2D" path="res://growlithe/still_4.png" id="13_lj138"]
 [ext_resource type="Texture2D" path="res://growlithe/run_1.png" id="14_cty6k"]
 [ext_resource type="Texture2D" path="res://growlithe/run_3.png" id="15_x807g"]
 [ext_resource type="Texture2D" path="res://growlithe/run_4.png" id="16_ylgki"]
+[ext_resource type="Script" path="res://characters/StateManager.gd" id="19_7eqak"]
+[ext_resource type="Script" path="res://characters/growlithe/IdleState.gd" id="20_ktq7c"]
 
 [sub_resource type="GDScript" id="GDScript_vybby"]
 resource_name = "character"
@@ -139,7 +141,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("10_h452r")
+"texture": ExtResource("10_a38bm")
 }],
 "loop": true,
 "name": &"faint",
@@ -147,7 +149,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("11_wqfmh")
+"texture": ExtResource("11_wqhbv")
 }],
 "loop": true,
 "name": &"hurt",
@@ -252,6 +254,12 @@ script = SubResource("GDScript_tjx7v")
 scale = Vector2(-1.71127, 1.88607)
 shape = SubResource("RectangleShape2D_3uawo")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="StateManager" type="Node" parent="."]
+script = ExtResource("19_7eqak")
+
+[node name="IdleState" type="Node" parent="StateManager"]
+script = ExtResource("20_ktq7c")
 
 [connection signal="direction_changed" from="." to="animations" method="_on_character_body_2d_direction_changed"]
 [connection signal="state_changed" from="." to="animations" method="_on_character_body_2d_state_changed"]

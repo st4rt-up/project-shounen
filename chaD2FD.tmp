@@ -174,8 +174,7 @@ motion_mode = 1
 scale = Vector2(1.01208, 0.996025)
 sprite_frames = SubResource("SpriteFrames_yj425")
 animation = &"idle"
-autoplay = "idle"
-frame_progress = 0.570787
+frame_progress = 0.236249
 script = SubResource("GDScript_tjx7v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

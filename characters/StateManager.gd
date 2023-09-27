@@ -2,10 +2,11 @@ extends Node
 class_name StateManager
 
 var state: Object
+var state_name = "none"
 var history = []
 
 func _ready():
-	state = get_child(0)
+	state = get_node("IdleState")
 	_enter_state()
 	
 func change_to(new_state):
@@ -19,24 +20,14 @@ func back():
 		_enter_state()
 	
 func _enter_state():
+	print("Entering state: ", state.name)
+	state_name = state.name
 	state.fsm = self
 	state.enter()
 	
-func _physics_process(delta):
-	if state.has_method("physics_process"):
-		state.physics_process(delta)
-
-func _input(event):
-	if state.has_method("input"):
-		state.input(event)
-
-func _unhandled_input(event):
-	if state.has_method("unhandled_input"):
-		state.unhandled_input(event)
-
-func _unhandled_key_input(event):
-	if state.has_method("unhandled_key_input"):
-		state.unhandled_key_input(event)
+func _process(delta):
+	if state.has_method("process"):
+		state.process(delta)
 
 func _notification(what):
 	if state && state.has_method("notification"):

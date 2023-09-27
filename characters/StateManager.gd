@@ -2,7 +2,6 @@ extends Node
 class_name StateManager
 
 var state: Object
-var state_name = "none"
 var history = []
 
 func _ready():
@@ -21,7 +20,7 @@ func back():
 	
 func _enter_state():
 	print("Entering state: ", state.name)
-	state_name = state.name
+
 	state.fsm = self
 	state.enter()
 	

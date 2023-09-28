@@ -11,11 +11,16 @@ func process(delta):
 	
 	if directions_pressed:
 		exit("RunState")
+		
+	if Input.is_action_pressed("p2_attack_1"):
+		exit("HurtState")
 	
 	if Input.is_action_pressed("attack_1"):
 		exit("Attack1State")
 	elif Input.is_action_pressed("attack_2"):
 		exit("Attack2State")
+	elif Input.is_action_pressed("attack_3"):
+		exit("Attack3State")
 	
 
 	

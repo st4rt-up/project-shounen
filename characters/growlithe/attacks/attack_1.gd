@@ -1,11 +1,11 @@
 extends Node2D
 
 @onready var anim = %anim
-var attack_vel = 6
-var offset = 100
+var attack_vel = 150
+var offset = 80
 
 var timer = 0
-var lifetime = 90
+var lifetime = 200
 
 var facing
 
@@ -27,9 +27,9 @@ func _on_anim_animation_finished():
 
 func _process(delta):
 	if facing == "right":
-		position.x += attack_vel
+		position.x += attack_vel * delta
 	elif facing == "left":
-		position.x -= attack_vel
+		position.x -= attack_vel * delta
 	
 	timer += 100 * delta
 	

@@ -1,12 +1,12 @@
 extends BaseState
 
-@export var attack_vel = 300
+@export var attacking_vel = 150
 
 func enter():
 	anim.play("attack_phys")
 	
 	owner.velocity.y = 0
-	owner.velocity.x = attack_vel
+	owner.velocity.x = attacking_vel
 	
 	if owner.facing == "left":
 		owner.velocity.x = -owner.velocity.x

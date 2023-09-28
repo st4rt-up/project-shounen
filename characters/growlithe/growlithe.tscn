@@ -146,4 +146,3 @@ script = ExtResource("20_ktq7c")
 
 [node name="RunState" type="Node" parent="StateManager"]
 script = ExtResource("21_n50f0")
-speed = null

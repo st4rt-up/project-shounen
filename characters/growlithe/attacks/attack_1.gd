@@ -1,7 +1,12 @@
 extends Node2D
 
 @onready var anim = %anim
-var attack_vel = 5
+var attack_vel = 6
+var offset = 100
+
+var timer = 0
+var lifetime = 90
+
 var facing
 
 func _ready():
@@ -9,8 +14,10 @@ func _ready():
 	
 	if facing == "right":
 		anim.flip_h = false
+		position.x += offset
 	elif facing == "left":
 		anim.flip_h = true
+		position.x -= offset
 
 func init(dir):
 	facing = dir
@@ -24,7 +31,12 @@ func _process(delta):
 	elif facing == "left":
 		position.x -= attack_vel
 	
+	timer += 100 * delta
+	
+	if timer >= lifetime:
+		kill()
+	
 
 
 func kill():
-	pass
+	queue_free()

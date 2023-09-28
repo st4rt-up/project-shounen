@@ -15,6 +15,7 @@ func enter():
 	var instance = attack1.instantiate()
 	
 	instance.init(owner.facing)
+	instance.position = owner.position
 	add_child(instance)
 	
 func process(_delta):

@@ -174,11 +174,11 @@ script = ExtResource("23_t4l6i")
 [node name="Attack2State" type="Node" parent="StateManager"]
 script = ExtResource("24_sl2hv")
 
-[node name="Attack3State" type="Node" parent="StateManager"]
-script = ExtResource("26_lo7qa")
-
 [node name="BaseAttackState" type="Node" parent="StateManager"]
 script = ExtResource("23_gx8xi")
+
+[node name="Attack3State" type="Node" parent="StateManager"]
+script = ExtResource("26_lo7qa")
 
 [node name="HurtState" type="Node" parent="StateManager"]
 script = ExtResource("27_si5a3")

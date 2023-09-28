@@ -1,14 +1,12 @@
 extends BaseState
 
-var input_vector
-
 @export var speed = 180
 
-func enter() -> void:
+func frame_0() -> void:
 	anim.play("run")
 	
-func process(_delta) -> void:
-	input_vector = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized()
+func every_frame(_delta) -> void:
+	var input_vector = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized()
 	var directions_pressed = sqrt(input_vector.x * input_vector.x + input_vector.y * input_vector.y) > 0
 	
 	# owner.position += input_vector * (speed/150)
@@ -34,6 +32,3 @@ func process(_delta) -> void:
 		exit("Attack2State")
 	elif Input.is_action_pressed("attack_3"):
 		exit("Attack3State")
-	
-	
-

@@ -1,6 +1,7 @@
-[gd_scene load_steps=25 format=3 uid="uid://bbndp3guf6nrg"]
+[gd_scene load_steps=28 format=3 uid="uid://bbndp3guf6nrg"]
 
 [ext_resource type="Texture2D" uid="uid://c82xuaodxay48" path="res://characters/growlithe/sprites/attack_2_1.png" id="1_0dk7b"]
+[ext_resource type="Script" path="res://characters/growlithe/growlithe.gd" id="1_fiidv"]
 [ext_resource type="Texture2D" uid="uid://xt561iuhm2uh" path="res://characters/growlithe/sprites/attack_2_3.png" id="2_if3la"]
 [ext_resource type="Texture2D" uid="uid://ch60hnjbsnag1" path="res://characters/growlithe/sprites/attack_2_2.png" id="3_pd7su"]
 [ext_resource type="Texture2D" uid="uid://cidogyxtiik6h" path="res://characters/growlithe/sprites/attack_2_4.png" id="4_6tkmt"]
@@ -19,9 +20,11 @@
 [ext_resource type="Texture2D" uid="uid://hldfpsmuwc4s" path="res://characters/growlithe/sprites/run_3.png" id="17_7nevj"]
 [ext_resource type="Texture2D" uid="uid://b56yceyad20ew" path="res://characters/growlithe/sprites/run_4.png" id="18_0qhaf"]
 [ext_resource type="Script" path="res://characters/StateManager.gd" id="19_7eqak"]
-[ext_resource type="Script" path="res://characters/growlithe/IdleState.gd" id="20_ktq7c"]
-[ext_resource type="Script" path="res://characters/growlithe/RunState.gd" id="21_n50f0"]
-[ext_resource type="Script" path="res://characters/growlithe/BaseState.gd" id="22_m6bhe"]
+[ext_resource type="Script" path="res://characters/growlithe/states/IdleState.gd" id="20_wpspe"]
+[ext_resource type="Script" path="res://characters/growlithe/states/RunState.gd" id="21_sgp5c"]
+[ext_resource type="Script" path="res://characters/BaseAttackState.gd" id="23_gx8xi"]
+[ext_resource type="Script" path="res://characters/growlithe/states/Attack1State.gd" id="23_t4l6i"]
+[ext_resource type="Script" path="res://characters/growlithe/states/Attack2State.gd" id="24_sl2hv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yj425"]
 animations = [{
@@ -44,7 +47,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("6_hvg3l")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack_phys",
 "speed": 12.0
 }, {
@@ -64,7 +67,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("7_butwu")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack_spec",
 "speed": 12.0
 }, {
@@ -74,7 +77,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"faint",
-"speed": 12.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -82,7 +85,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"hurt",
-"speed": 12.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -125,14 +128,14 @@ size = Vector2(48, 48)
 [node name="growlithe" type="CharacterBody2D"]
 scale = Vector2(0.994552, 0.994035)
 motion_mode = 1
+script = ExtResource("1_fiidv")
 
 [node name="anim" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 scale = Vector2(1.01208, 0.996025)
 sprite_frames = SubResource("SpriteFrames_yj425")
-animation = &"idle"
+animation = &"hurt"
 autoplay = "idle"
-frame_progress = 0.570787
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(-1.71127, 1.88607)
@@ -143,10 +146,18 @@ debug_color = Color(0, 0.6, 0.701961, 0.419608)
 script = ExtResource("19_7eqak")
 
 [node name="IdleState" type="Node" parent="StateManager"]
-script = ExtResource("20_ktq7c")
+script = ExtResource("20_wpspe")
 
 [node name="RunState" type="Node" parent="StateManager"]
-script = ExtResource("21_n50f0")
+script = ExtResource("21_sgp5c")
 
-[node name="BaseState" type="Node" parent="StateManager"]
-script = ExtResource("22_m6bhe")
+[node name="Attack1State" type="Node" parent="StateManager"]
+script = ExtResource("23_t4l6i")
+
+[node name="Attack2State" type="Node" parent="StateManager"]
+script = ExtResource("24_sl2hv")
+
+[node name="BaseAttackState" type="Node" parent="StateManager"]
+script = ExtResource("23_gx8xi")
+
+[connection signal="animation_finished" from="anim" to="StateManager/Attack1State" method="_on_anim_animation_finished"]

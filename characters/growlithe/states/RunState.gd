@@ -1,7 +1,6 @@
 extends BaseState
 
 var input_vector
-
 @export var speed = 300.0
 
 func enter():
@@ -13,17 +12,24 @@ func process(delta):
 	
 	# owner.position += input_vector * (speed/150)
 	
-	if input_vector.x < 0:
-		anim.flip_h = true
-	elif input_vector.x > 0:
-		anim.flip_h = false
-	
 	owner.velocity = input_vector * speed
 	owner.move_and_slide()
 	
+	if input_vector.x < 0:
+		owner.facing = "left"
+		anim.flip_h = true
+		
+	elif input_vector.x > 0:
+		owner.facing = "right"
+		anim.flip_h = false
+		
 	if not directions_pressed:
 		# exit this state, into idle state
 		exit("IdleState")
+		
+	if Input.is_action_pressed("attack_1"):
+		exit("Attack1State")
+	elif Input.is_action_pressed("attack_2"):
+		exit("Attack2State")
 	
 
-	

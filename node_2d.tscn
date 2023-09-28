@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c1bmbf4ltqhej"]
 
-[ext_resource type="PackedScene" uid="uid://bbndp3guf6nrg" path="res://character_body_2d.tscn" id="1_7xtao"]
+[ext_resource type="PackedScene" uid="uid://bbndp3guf6nrg" path="res://characters/growlithe/growlithe.tscn" id="1_7xtao"]
 
 [node name="Node2D" type="Node2D"]
 

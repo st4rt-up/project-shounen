@@ -33,8 +33,9 @@
 [ext_resource type="Script" path="res://characters/growlithe/states/Attack3State.gd" id="26_lo7qa"]
 [ext_resource type="Script" path="res://characters/growlithe/Action3.gd" id="26_rdk02"]
 [ext_resource type="Script" path="res://characters/growlithe/InputManager.gd" id="27_na0jq"]
-[ext_resource type="Script" path="res://characters/growlithe/Hurt.gd" id="27_rfmfg"]
 [ext_resource type="Script" path="res://characters/growlithe/states/HurtState.gd" id="27_si5a3"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cjv8d"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yj425"]
 animations = [{
@@ -142,14 +143,18 @@ size = Vector2(82.4492, 89.5341)
 scale = Vector2(0.994552, 0.994035)
 script = ExtResource("1_fiidv")
 
+[node name="anim" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_cjv8d")
+}
+
 [node name="sprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 scale = Vector2(1.01208, 0.996025)
 sprite_frames = SubResource("SpriteFrames_yj425")
-animation = &"attack_phys"
+animation = &"hurt"
 autoplay = "idle"
-frame = 5
-frame_progress = 1.0
 
 [node name="hurtbox" type="Area2D" parent="."]
 scale = Vector2(1, 1)
@@ -174,6 +179,7 @@ script = ExtResource("22_h0oup")
 
 [node name="Run" type="Node" parent="StateManager2"]
 script = ExtResource("23_bax2e")
+speed = null
 
 [node name="Action1" type="Node" parent="StateManager2"]
 script = ExtResource("24_byeom")
@@ -185,7 +191,6 @@ script = ExtResource("25_0wq7l")
 script = ExtResource("26_rdk02")
 
 [node name="Hurt" type="Node" parent="StateManager2"]
-script = ExtResource("27_rfmfg")
 
 [node name="StateManager" type="Node" parent="."]
 unique_name_in_owner = true

@@ -5,7 +5,7 @@ var state: Object
 var history = []
 
 func _ready():
-	state = get_node("IdleState")
+	state = get_node("Idle")
 	_enter_state()
 	
 func change_to(new_state):
@@ -15,7 +15,7 @@ func change_to(new_state):
 
 func back():
 	if history.size() > 0:
-		state = get_node(history.pop_back())
+		state = get_node(NodePath(history.pop_back()))
 		_enter_state()
 	
 func _enter_state():
@@ -28,6 +28,6 @@ func _process(delta):
 	if state.has_method("process"):
 		state.process(delta)
 
-func _notification(what):
-	if state && state.has_method("notification"):
-		state.notification(what)
+func _physics_process(delta):
+	if state.has_method("physics_process"):
+		state.physics_process(delta)

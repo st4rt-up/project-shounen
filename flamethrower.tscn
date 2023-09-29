@@ -1,0 +1,82 @@
+[gd_scene load_steps=11 format=3 uid="uid://bqg35t1wj25nv"]
+
+[ext_resource type="Script" path="res://Flamethrower.gd" id="1_bbi30"]
+[ext_resource type="Texture2D" uid="uid://cmxkljrub0oua" path="res://characters/growlithe/attack sprites/growlithe_1_1.png" id="2_l3j2l"]
+[ext_resource type="Texture2D" uid="uid://bmmf23x622dhq" path="res://characters/growlithe/attack sprites/growlithe_1_2.png" id="3_gatr1"]
+[ext_resource type="Texture2D" uid="uid://cdx41bt0xa6y8" path="res://characters/growlithe/attack sprites/growlithe_1_3.png" id="4_33ao8"]
+[ext_resource type="Texture2D" uid="uid://crkwb6qe8ffs" path="res://characters/growlithe/attack sprites/growlithe_1_4.png" id="5_fc4eu"]
+
+[sub_resource type="Animation" id="Animation_8htkl"]
+resource_name = "main"
+length = 3.0
+step = 0.0166667
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"kill"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5a70t"]
+_data = {
+"main": SubResource("Animation_8htkl")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8cvo3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_l3j2l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_gatr1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_33ao8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_fc4eu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bpbgr"]
+size = Vector2(141, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3l5s1"]
+size = Vector2(114, 63)
+
+[node name="flamethrower" type="Node2D"]
+script = ExtResource("1_bbi30")
+
+[node name="anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5a70t")
+}
+
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+sprite_frames = SubResource("SpriteFrames_8cvo3")
+frame_progress = 0.477431
+
+[node name="hitbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="close" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(-57.5, 0)
+shape = SubResource("RectangleShape2D_bpbgr")
+
+[node name="further" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(70, -0.5)
+shape = SubResource("RectangleShape2D_3l5s1")

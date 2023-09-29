@@ -19,7 +19,6 @@ func frame_14():
 	instance.position = owner.position
 	add_child(instance)
 	
-
 func frame_50():
 	owner.velocity.x = 0
 	owner.velocity.y = 0

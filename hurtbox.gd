@@ -9,4 +9,4 @@ func _process(delta):
 	pass
 
 func _on_Area2D_body_enter(body):
-	
+	pass

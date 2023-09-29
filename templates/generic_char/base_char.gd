@@ -1,14 +1,14 @@
 extends CharacterBody2D
 
-@onready var sprite: AnimatedSprite2D = %sprite
+@onready var anim: AnimatedSprite2D= %anim
 var facing: String = "right"
 
 func face_left():
-	sprite.flip_h = true
+	anim.flip_h = true
 	facing = "left"
 	pass
 
 func face_right():
-	sprite.flip_h = false
+	anim.flip_h = true
 	facing = "right"
 	pass

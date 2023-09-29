@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://c1bmbf4ltqhej"]
 
-[ext_resource type="PackedScene" uid="uid://bbndp3guf6nrg" path="res://characters/growlithe/growlithe.tscn" id="1_7xtao"]
-[ext_resource type="Script" path="res://Label.gd" id="3_lmmy4"]
+[ext_resource type="PackedScene" uid="uid://bbndp3guf6nrg" path="res://characters/growlithe/growlithe.tscn" id="1_g6jb4"]
+[ext_resource type="Script" path="res://Label.gd" id="2_d2hqx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_85ih6"]
 size = Vector2(167.5, 95)
@@ -24,11 +24,11 @@ distance = -174.848
 normal = Vector2(3.3, 0)
 distance = -174.545
 
-[node name="Node2D" type="Node2D"]
+[node name="test scene" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="growlithe" parent="." instance=ExtResource("1_7xtao")]
+[node name="growlithe" parent="." instance=ExtResource("1_g6jb4")]
 
 [node name="test box" type="Area2D" parent="."]
 position = Vector2(-123, -51)
@@ -59,6 +59,6 @@ shape = SubResource("WorldBoundaryShape2D_sksil")
 [node name="Label" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0
-script = ExtResource("3_lmmy4")
+script = ExtResource("2_d2hqx")
 
 [connection signal="area_entered" from="test box" to="growlithe" method="_on_area_2d_area_entered"]

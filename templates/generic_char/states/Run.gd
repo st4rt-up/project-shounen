@@ -1,26 +1,30 @@
-extends BaseState
+extends State
 
 @export var speed = 180
+@onready var anim = %anim
 
 func frame_0():
 	anim.play("run")
 	
 func every_frame(_delta):
-	var input_vector = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized()
-	var directions_pressed = sqrt(input_vector.x * input_vector.x + input_vector.y * input_vector.y) > 0
+	var input_vec = Input.get_vector(
+		"move_left", 
+		"move_right", 
+		"move_up", 
+		"move_down").normalized()
+		
+	var directions_pressed = sqrt(input_vec.x * input_vec.x + input_vec.y * input_vec.y) > 0
 	
 	# owner.position += input_vector * (speed/150)
 	
-	owner.velocity = input_vector * speed
+	owner.velocity = input_vec * speed
 	owner.move_and_slide()
 	
-	if input_vector.x < 0:
-		owner.facing = "left"
-		anim.flip_h = true
+	if input_vec.x < 0:
+		owner.face_left()
 		
-	elif input_vector.x > 0:
-		owner.facing = "right"
-		anim.flip_h = false
+	elif input_vec.x > 0:
+		owner.face_right()
 		
 	if not directions_pressed:
 		# exit this state, into idle state

@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://cafh844gh4vni"]
 
 [ext_resource type="Script" path="res://templates/generic_char/base_char.gd" id="1_unfeb"]
-[ext_resource type="Script" path="res://characters/shared/StateManager.gd" id="2_bydy4"]
+[ext_resource type="Script" path="res://characters/components/scripts/StateManager.gd" id="2_wfwkv"]
 [ext_resource type="Script" path="res://templates/generic_char/states/Idle.gd" id="3_qnpd3"]
 [ext_resource type="Script" path="res://templates/generic_char/states/Run.gd" id="4_pkgp6"]
 [ext_resource type="Script" path="res://templates/generic_char/Action1.gd" id="5_uxm72"]
@@ -45,10 +45,10 @@ script = ExtResource("1_unfeb")
 [node name="collision box" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_wf3be")
 
-[node name="hurtbox" type="Area2D" parent="."]
+[node name="HurtboxComponent" type="Area2D" parent="."]
 input_pickable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
 position = Vector2(41, -52)
 shape = SubResource("RectangleShape2D_74rv2")
 
@@ -58,8 +58,10 @@ process_mode = -54
 sprite_frames = SubResource("SpriteFrames_mcnui")
 animation = &"faint"
 
+[node name="HealthComponent" type="Node2D" parent="."]
+
 [node name="StateManager" type="Node" parent="."]
-script = ExtResource("2_bydy4")
+script = ExtResource("2_wfwkv")
 
 [node name="Idle" type="Node" parent="StateManager"]
 script = ExtResource("3_qnpd3")
@@ -76,3 +78,5 @@ script = ExtResource("5_uxm72")
 script = ExtResource("6_7axww")
 
 [node name="Action3" type="Node" parent="StateManager"]
+
+[node name="InputManager" type="Node" parent="."]

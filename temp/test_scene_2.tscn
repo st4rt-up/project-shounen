@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bojj8ug5fjjeq"]
+
+[ext_resource type="Script" path="res://temp/test_scene_2.gd" id="1_icgha"]
+[ext_resource type="PackedScene" uid="uid://b7lylm74jaidn" path="res://characters/growlithe_new/growlithe.tscn" id="2_wsb51"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_icgha")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="growlithe" parent="." instance=ExtResource("2_wsb51")]

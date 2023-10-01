@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3dxe3mg78pik"]
+
+[ext_resource type="Script" path="res://characters/components/scripts/HealthComponent.gd" id="1_ciahc"]
+
+[node name="HealthComponent" type="Node2D" node_paths=PackedStringArray("state_manager")]
+script = ExtResource("1_ciahc")
+state_manager = NodePath("")

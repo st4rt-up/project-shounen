@@ -1,17 +1,8 @@
 extends State
 class_name AttackState
 
-func startup():
-	pass
-
-func active():
-	pass
-
-func recovery():
-	pass
-	
-func shoot(proj: Projectile):
-	pass
-
-func end():
-	exit("Idle")
+func shoot_proj(proj, dir):
+	var instance = proj.instantiate()
+	instance.init(dir)
+	instance.position = owner.position
+	add_child(instance) 

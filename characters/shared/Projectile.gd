@@ -1,4 +1,4 @@
-extends FrameManager, Node2D
+extends FrameManager
 class_name Projectile
 
 var vel: float = 0.0
@@ -9,8 +9,8 @@ func every_frame(delta):
 		var h_vel:float = vel * dir.x
 		var y_vel:float = vel * dir.y
 		
-		position.x += h_vel
-		position.y += y_vel
+		owner.position.x += h_vel
+		owner.position.y += y_vel
 
 func kill():
 	queue_free()

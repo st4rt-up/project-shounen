@@ -35,7 +35,7 @@ libraries = {
 "": SubResource("AnimationLibrary_4gb46")
 }
 
-[node name="anim" type="AnimatedSprite2D" parent="."]
+[node name="sprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_cd1sd")
 

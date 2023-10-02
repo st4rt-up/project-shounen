@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="AttackResource" load_steps=2 format=3 uid="uid://dpml86wtwxoeg"]
+
+[ext_resource type="Script" path="res://files/components/resources/AttackResource.gd" id="1_0hwll"]
+
+[resource]
+script = ExtResource("1_0hwll")
+path = "res://files/characters/growlithe/attacks/flamethrower/flamethrower.tscn"
+attack_damage = 0
+knockback_force = 0
+hitstun = 0
+lifetime = 80
+attack_velocity = 0.0
+h_offset = 180
+v_offset = 0

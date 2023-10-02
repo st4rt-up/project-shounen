@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://b3jsarefinl1g"]
+
+[ext_resource type="Script" path="res://files/characters/growlithe/hurtboxes/Idle.gd" id="1_jpftq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a31i0"]
+size = Vector2(46, 89)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dcmsx"]
+size = Vector2(41, 52)
+
+[node name="Idle" type="Area2D"]
+script = ExtResource("1_jpftq")
+
+[node name="1" type="CollisionShape2D" parent="."]
+position = Vector2(17, 0.5)
+shape = SubResource("RectangleShape2D_a31i0")
+
+[node name="2" type="CollisionShape2D" parent="."]
+position = Vector2(-26.5, 19)
+shape = SubResource("RectangleShape2D_dcmsx")

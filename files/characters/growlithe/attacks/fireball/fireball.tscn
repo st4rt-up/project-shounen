@@ -1,0 +1,68 @@
+[gd_scene load_steps=14 format=3 uid="uid://cgik6vakumqks"]
+
+[ext_resource type="Script" path="res://files/characters/growlithe/attacks/fireball/fireball.gd" id="1_qn845"]
+[ext_resource type="Texture2D" uid="uid://bf17vpw7sexgq" path="res://files/characters/growlithe/attacks/fireball/sprites/growlithe_2_5.png" id="2_dj6y7"]
+[ext_resource type="Texture2D" uid="uid://bkcj3bw1rpi2u" path="res://files/characters/growlithe/attacks/fireball/sprites/growlithe_2_6.png" id="3_bwilg"]
+[ext_resource type="Texture2D" uid="uid://coyjljambu8n8" path="res://files/characters/growlithe/attacks/fireball/sprites/growlithe_2_7.png" id="4_tk8xl"]
+[ext_resource type="Texture2D" uid="uid://buatto28t5rtg" path="res://files/characters/growlithe/attacks/fireball/sprites/growlithe_2_8.png" id="5_02wmg"]
+[ext_resource type="Texture2D" uid="uid://dfitke4jj4fed" path="res://files/characters/growlithe/attacks/fireball/sprites/growlithe_2_1.png" id="6_m0x26"]
+[ext_resource type="Texture2D" uid="uid://ccbjoqfikach4" path="res://files/characters/growlithe/attacks/fireball/sprites/growlithe_2_2.png" id="7_xdyq1"]
+[ext_resource type="Texture2D" uid="uid://mdqjrt6fqkxm" path="res://files/characters/growlithe/attacks/fireball/sprites/growlithe_2_3.png" id="8_hjk67"]
+[ext_resource type="Texture2D" uid="uid://dd3c47bx1gibh" path="res://files/characters/growlithe/attacks/fireball/sprites/growlithe_2_4.png" id="9_2i74u"]
+[ext_resource type="PackedScene" uid="uid://bsc5ksmm3bsav" path="res://files/components/HitboxManager.tscn" id="10_agnln"]
+[ext_resource type="PackedScene" uid="uid://cmybv5bhyk3t5" path="res://files/characters/growlithe/attacks/fireball/hitboxes/loop.tscn" id="11_7hw6b"]
+[ext_resource type="PackedScene" uid="uid://bunkwvyb483kw" path="res://files/characters/growlithe/attacks/fireball/hitboxes/start.tscn" id="12_88tmx"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yvc7n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_dj6y7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_bwilg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_tk8xl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_02wmg")
+}],
+"loop": true,
+"name": &"loop",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_m0x26")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_xdyq1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_hjk67")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_2i74u")
+}],
+"loop": false,
+"name": &"start",
+"speed": 8.0
+}]
+
+[node name="fireball" type="Node2D" node_paths=PackedStringArray("hitbox_manager", "sprite")]
+script = ExtResource("1_qn845")
+hitbox_manager = NodePath("HitboxManager")
+sprite = NodePath("Sprite")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_yvc7n")
+animation = &"start"
+frame = 3
+frame_progress = 1.0
+
+[node name="HitboxManager" parent="." instance=ExtResource("10_agnln")]
+
+[node name="loop" parent="HitboxManager" instance=ExtResource("11_7hw6b")]
+
+[node name="start" parent="HitboxManager" instance=ExtResource("12_88tmx")]

@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://uvnybtrt2hgg"]
+
+[ext_resource type="PackedScene" uid="uid://b7lylm74jaidn" path="res://files/characters/growlithe/growlithe.tscn" id="2_aupmv"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ynt6y"]
+normal = Vector2(0, -5.8)
+distance = -56.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_oh7bt"]
+normal = Vector2(0, 5.8)
+distance = -56.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xd63i"]
+normal = Vector2(3.3, 0)
+distance = -174.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uf2px"]
+normal = Vector2(-3.3, 0)
+distance = -174.0
+
+[node name="Node2D" type="Node2D"]
+
+[node name="growlithe" parent="." instance=ExtResource("2_aupmv")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="world walls" type="StaticBody2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="world walls"]
+shape = SubResource("WorldBoundaryShape2D_ynt6y")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="world walls"]
+shape = SubResource("WorldBoundaryShape2D_oh7bt")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="world walls"]
+shape = SubResource("WorldBoundaryShape2D_xd63i")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="world walls"]
+shape = SubResource("WorldBoundaryShape2D_uf2px")

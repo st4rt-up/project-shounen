@@ -1,0 +1,235 @@
+[gd_scene load_steps=40 format=3 uid="uid://b7lylm74jaidn"]
+
+[ext_resource type="Script" path="res://files/characters/growlithe/growlithe.gd" id="1_cyqhy"]
+[ext_resource type="Texture2D" uid="uid://c82xuaodxay48" path="res://files/characters/growlithe/sprites/attack_2_1.png" id="1_fmsbn"]
+[ext_resource type="Texture2D" uid="uid://ch60hnjbsnag1" path="res://files/characters/growlithe/sprites/attack_2_2.png" id="2_nn45g"]
+[ext_resource type="Texture2D" uid="uid://xt561iuhm2uh" path="res://files/characters/growlithe/sprites/attack_2_3.png" id="3_vpy0e"]
+[ext_resource type="Texture2D" uid="uid://cidogyxtiik6h" path="res://files/characters/growlithe/sprites/attack_2_4.png" id="4_47r41"]
+[ext_resource type="Texture2D" uid="uid://gy3iajvjb104" path="res://files/characters/growlithe/sprites/run_2.png" id="5_e0c22"]
+[ext_resource type="Texture2D" uid="uid://b31xtuchppbyc" path="res://files/characters/growlithe/sprites/attack_2_5.png" id="6_baolf"]
+[ext_resource type="Texture2D" uid="uid://c6buw7kwpkudk" path="res://files/characters/growlithe/sprites/attack_1_1.png" id="7_oqtc4"]
+[ext_resource type="Texture2D" uid="uid://dufnt3tn1yfv7" path="res://files/characters/growlithe/sprites/attack_1_2.png" id="8_hk4ml"]
+[ext_resource type="Texture2D" uid="uid://bbtbuxocvn2rv" path="res://files/characters/growlithe/sprites/attack_1_3.png" id="9_p3exp"]
+[ext_resource type="Texture2D" uid="uid://ddsy6e1un2f6e" path="res://files/characters/growlithe/sprites/faint.png" id="10_qdmhl"]
+[ext_resource type="Texture2D" uid="uid://bi8yk7vpwkudb" path="res://files/characters/growlithe/sprites/hurt.png" id="11_grgql"]
+[ext_resource type="Texture2D" uid="uid://ds1odf1tklh7s" path="res://files/characters/growlithe/sprites/still_1.png" id="12_g3var"]
+[ext_resource type="Texture2D" uid="uid://c0myn5aab0cy2" path="res://files/characters/growlithe/sprites/still_2.png" id="13_p8wkf"]
+[ext_resource type="Texture2D" uid="uid://cbbbgg40ni85k" path="res://files/characters/growlithe/sprites/still_3.png" id="14_qhthw"]
+[ext_resource type="Texture2D" uid="uid://b1vsdefu811cy" path="res://files/characters/growlithe/sprites/still_4.png" id="15_3e2bm"]
+[ext_resource type="Texture2D" uid="uid://bjbvqx3k4idne" path="res://files/characters/growlithe/sprites/run_1.png" id="16_52v1d"]
+[ext_resource type="Texture2D" uid="uid://hldfpsmuwc4s" path="res://files/characters/growlithe/sprites/run_3.png" id="17_efoga"]
+[ext_resource type="Texture2D" uid="uid://b56yceyad20ew" path="res://files/characters/growlithe/sprites/run_4.png" id="18_03fdj"]
+[ext_resource type="PackedScene" uid="uid://c3dxe3mg78pik" path="res://files/components/HealthComponent.tscn" id="19_dyt3f"]
+[ext_resource type="Script" path="res://files/components/scripts/Sprite.gd" id="20_djx4c"]
+[ext_resource type="PackedScene" uid="uid://mefgnmocdhq5" path="res://files/components/InputManager.tscn" id="20_w68lr"]
+[ext_resource type="Resource" uid="uid://clje1u084gnbu" path="res://files/components/resources/p1_inputs.tres" id="21_uxxol"]
+[ext_resource type="PackedScene" uid="uid://ce0r5i1lenqmi" path="res://files/components/HurtboxManager.tscn" id="22_ojt1n"]
+[ext_resource type="PackedScene" uid="uid://b3jsarefinl1g" path="res://files/characters/growlithe/hurtboxes/idle.tscn" id="23_tgql4"]
+[ext_resource type="PackedScene" uid="uid://bej80yihxuksp" path="res://files/characters/growlithe/hurtboxes/run.tscn" id="24_sl2ut"]
+[ext_resource type="PackedScene" uid="uid://bkopct54wt8mu" path="res://files/components/StateManager.tscn" id="25_5icjn"]
+[ext_resource type="Script" path="res://files/characters/growlithe/states/Idle.gd" id="26_128sa"]
+[ext_resource type="Script" path="res://files/characters/growlithe/states/Run.gd" id="27_if02e"]
+[ext_resource type="Script" path="res://files/characters/growlithe/states/Hurt.gd" id="28_if4x7"]
+[ext_resource type="Script" path="res://files/characters/growlithe/states/Attacking.gd" id="29_p48kj"]
+[ext_resource type="Script" path="res://files/components/resources/AttackResource.gd" id="30_a6nnx"]
+[ext_resource type="Resource" uid="uid://dpml86wtwxoeg" path="res://files/characters/growlithe/attacks/flamethrower/flamethrower.tres" id="32_j4vra"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oeyjf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_fmsbn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_nn45g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_vpy0e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_47r41")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_e0c22")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_baolf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_p8wkf")
+}],
+"loop": false,
+"name": &"attack_phys",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_oqtc4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_hk4ml")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_p3exp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_p3exp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_hk4ml")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_oqtc4")
+}],
+"loop": false,
+"name": &"attack_spec",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_qdmhl")
+}],
+"loop": false,
+"name": &"faint",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_grgql")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_g3var")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_p8wkf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_qhthw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_3e2bm")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_52v1d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_e0c22")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_efoga")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_03fdj")
+}],
+"loop": true,
+"name": &"run",
+"speed": 12.0
+}]
+
+[sub_resource type="Animation" id="Animation_yxgpo"]
+resource_name = "flamethrower"
+step = 0.0166667
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StateManager/Attacking")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0166667, 0.233333, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"flamethrower_init"
+}, {
+"args": [],
+"method": &"shoot_flamethrower"
+}, {
+"args": [],
+"method": &"move_end"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0166667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"attack_spec", 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_nyl6a"]
+resource_name = "fireball"
+length = 0.566668
+step = 0.0166667
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StateManager/Attacking")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0166667, 0.25, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"fireball_init"
+}, {
+"args": [],
+"method": &"shoot_fireball"
+}, {
+"args": [],
+"method": &"move_end"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0833333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"attack_phys", 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a86q3"]
+_data = {
+"fireball": SubResource("Animation_nyl6a"),
+"flamethrower": SubResource("Animation_yxgpo")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rqvqy"]
+
+[sub_resource type="Resource" id="Resource_ca3nd"]
+script = ExtResource("30_a6nnx")
+path = "res://files/characters/growlithe/attacks/fireball.tscn"
+attack_damage = 0
+knockback_force = 0
+hitstun = 0
+lifetime = 80
+attack_velocity = 4.0
+h_offset = 20
+v_offset = 0
+
+[node name="growlithe" type="CharacterBody2D" node

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmybv5bhyk3t5"]
+
+[ext_resource type="Script" path="res://files/characters/growlithe/attacks/fireball/hitboxes/loop.gd" id="1_twfas"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lnqf3"]
+size = Vector2(136, 62)
+
+[node name="loop" type="Area2D"]
+script = ExtResource("1_twfas")
+
+[node name="1" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_lnqf3")
+debug_color = Color(0.984314, 0.113725, 0.109804, 0.419608)

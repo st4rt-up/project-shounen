@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bej80yihxuksp"]
+
+[ext_resource type="Script" path="res://files/characters/growlithe/hurtboxes/Run.gd" id="1_5uyq1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iafx2"]
+size = Vector2(42, 85)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1ugtr"]
+size = Vector2(30, 27)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vamf5"]
+size = Vector2(50, 25)
+
+[node name="Run" type="Area2D" node_paths=PackedStringArray("health_component")]
+script = ExtResource("1_5uyq1")
+health_component = NodePath("")
+
+[node name="1" type="CollisionShape2D" parent="."]
+position = Vector2(22, -1.5)
+shape = SubResource("RectangleShape2D_iafx2")
+
+[node name="2" type="CollisionShape2D" parent="."]
+position = Vector2(-14, 22.5)
+shape = SubResource("RectangleShape2D_1ugtr")
+
+[node name="3" type="CollisionShape2D" parent="."]
+position = Vector2(-24, -3.5)
+shape = SubResource("RectangleShape2D_vamf5")

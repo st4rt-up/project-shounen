@@ -1,0 +1,48 @@
+[gd_scene load_steps=10 format=3 uid="uid://d2x4ec57qocyt"]
+
+[ext_resource type="Script" path="res://files/characters/growlithe/attacks/roar/roar.gd" id="1_mb7fs"]
+[ext_resource type="Texture2D" uid="uid://bvv4f2gyekk2m" path="res://files/characters/growlithe/attacks/roar/sprites/growlithe_3_1.png" id="2_70myp"]
+[ext_resource type="Texture2D" uid="uid://c8ye1vov1d8hq" path="res://files/characters/growlithe/attacks/roar/sprites/growlithe_3_2.png" id="3_h7a74"]
+[ext_resource type="Texture2D" uid="uid://d2s3kr5fw83fy" path="res://files/characters/growlithe/attacks/roar/sprites/growlithe_3_3.png" id="4_u781n"]
+[ext_resource type="Texture2D" uid="uid://e40s61wkr5g0" path="res://files/characters/growlithe/attacks/roar/sprites/growlithe_3_4.png" id="5_4cpdv"]
+[ext_resource type="Texture2D" uid="uid://bfa72uh04elm0" path="res://files/characters/growlithe/attacks/roar/sprites/growlithe_3_5.png" id="6_wyt20"]
+[ext_resource type="Texture2D" uid="uid://boij13uel6rwt" path="res://files/characters/growlithe/attacks/roar/sprites/growlithe_3_6.png" id="7_yplqb"]
+[ext_resource type="PackedScene" uid="uid://bsc5ksmm3bsav" path="res://files/components/HitboxManager.tscn" id="8_0jlaq"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yjslf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_70myp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_h7a74")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_u781n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_4cpdv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_wyt20")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_yplqb")
+}],
+"loop": true,
+"name": &"start",
+"speed": 5.0
+}]
+
+[node name="roar" type="Node2D" node_paths=PackedStringArray("hitbox_manager", "sprite")]
+script = ExtResource("1_mb7fs")
+hitbox_manager = NodePath("HitboxManager")
+sprite = NodePath("Sprite")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_yjslf")
+animation = &"start"
+frame_progress = 0.559884
+
+[node name="HitboxManager" parent="." instance=ExtResource("8_0jlaq")]

@@ -2,53 +2,62 @@ extends FrameManager
 class_name Attack
 
 @export var sprite : AnimatedSprite2D
+@export var hitbox_manager : HitboxManager
+@export var path : StringName
 
 # attack properties
-var attack_damage : int = 1
-var knockback_force : int = 0
-var hitstun : int = 0
+var attack_effect : AttackEffectResource
 
-var lifetime : int = 200
+var proj_owner : Node2D
+var amt_hits : int = 1
+var lifetime : int = 200 # in frames
 
 var attack_vel : float = 0
 
-var facing_h : Vector2 = Vector2.RIGHT
-var facing : Vector2
-
 var h_offset : int = 0
 var v_offset : int = 0
+var facing : Vector2
 
+func _physics_process(delta) -> void:
+	advance_frame(delta)
 
-func _ready():
-	if facing_h == Vector2.RIGHT:
+func _ready() -> void:
+	if !sprite:
+		print("Sprite is not set for " + self.name + "!")
+	
+	if facing.x > 0: # facing right
 		position.x += h_offset
-	elif facing_h == Vector2.LEFT:
+	elif facing.x < 0: # facing left
 		position.x -= h_offset
 	
 	frame_0()
 	
 func face_right() -> void:
-	facing_h = Vector2.RIGHT
-	sprite.flip_h = false
-
+	facing.x = 1
+	if sprite: sprite.flip_h = false
+	if hitbox_manager: hitbox_manager.face_right()
+	
 func face_left() -> void:
-	facing_h = Vector2.LEFT
-	sprite.flip_h = true
-
-func every_frame():	
-	if facing_h == Vector2.RIGHT:
-		position.x += attack_vel
-	elif facing_h == Vector2.LEFT:
-		position.x -= attack_vel
+	facing.x = -1
+	if sprite: sprite.flip_h = true
+	if hitbox_manager: hitbox_manager.face_left()
+	
+func flip() -> void:
+	facing.x = -facing.x
+	sprite.flip_h = !sprite.flip_h
+	
+func every_frame() -> void:	
+	if facing:
+		position += facing * attack_vel
 	
 	if current_frame >= lifetime:
 		kill()
 
-func init(dir):
+func init(dir) -> void:
 	pass
 
-func frame_0():
+func frame_0() -> void:
 	pass
 
-func kill():
+func kill() -> void:
 	queue_free()

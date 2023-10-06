@@ -10,7 +10,8 @@ func _ready() -> void:
 	return
 	
 func flicker(time) -> void:
-	flicker_time = (time / (flicker_off_time + flicker_on_time)) - flicker_on_time
+	var flicker_duration : float = flicker_off_time + flicker_on_time
+	flicker_time = snapped( (time / flicker_duration) + flicker_duration, flicker_duration)
 	
 	var tween = create_tween()
 

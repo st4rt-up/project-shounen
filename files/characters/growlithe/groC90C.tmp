@@ -29,11 +29,10 @@
 [ext_resource type="PackedScene" uid="uid://bkopct54wt8mu" path="res://files/components/StateManager.tscn" id="25_5icjn"]
 [ext_resource type="Script" path="res://files/characters/growlithe/states/Idle.gd" id="26_128sa"]
 [ext_resource type="Script" path="res://files/characters/growlithe/states/Run.gd" id="27_if02e"]
-[ext_resource type="PackedScene" uid="uid://cpd3fejkgamwf" path="res://files/characters/growlithe/hurtboxes/hurt.tscn" id="27_v78rb"]
 [ext_resource type="Script" path="res://files/characters/growlithe/states/Hurt.gd" id="28_if4x7"]
 [ext_resource type="Script" path="res://files/characters/growlithe/states/Attacking.gd" id="29_p48kj"]
-[ext_resource type="Resource" uid="uid://dpml86wtwxoeg" path="res://files/characters/growlithe/attacks/flamethrower/flamethrower_stats.tres" id="32_e18d5"]
-[ext_resource type="Resource" uid="uid://ddgy3m3xpx5cu" path="res://files/characters/growlithe/attacks/fireball/fireball_stats.tres" id="33_47ucb"]
+[ext_resource type="Script" path="res://files/components/resources/AttackResource.gd" id="30_a6nnx"]
+[ext_resource type="Resource" uid="uid://dpml86wtwxoeg" path="res://files/characters/growlithe/attacks/flamethrower/flamethrower.tres" id="32_j4vra"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_oeyjf"]
 animations = [{
@@ -225,6 +224,20 @@ _data = {
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rqvqy"]
 
+[sub_resource type="Resource" id="Resource_ca3nd"]
+script = ExtResource("30_a6nnx")
+path = "res://files/characters/growlithe/attacks/fireball/fireball.tscn"
+attack_damage = 0
+knockback_force = 0
+hitstun = 0
+invuln = null
+lifetime = 80
+attack_velocity = 3.0
+h_offset = 20
+v_offset = 0
+facing = Vector2(1, 0)
+flip_sprite = null
+
 [node name="growlithe" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "hurtbox_manager")]
 script = ExtResource("1_cyqhy")
 sprite = NodePath("Sprite")
@@ -254,14 +267,13 @@ hurt_state = NodePath("../StateManager/Hurt")
 [node name="InputManager" parent="." instance=ExtResource("20_w68lr")]
 inputs = ExtResource("21_uxxol")
 
-[node name="HurtboxManager" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("22_ojt1n")]
-health_component = NodePath("../HealthComponent")
+[node name="HurtboxManager" parent="." instance=ExtResource("22_ojt1n")]
 
-[node name="Idle" parent="HurtboxManager" instance=ExtResource("23_tgql4")]
+[node name="Idle" parent="HurtboxManager" node_paths=PackedStringArray("health_component") instance=ExtResource("23_tgql4")]
+health_component = NodePath("../../HealthComponent")
 
-[node name="Run" parent="HurtboxManager" instance=ExtResource("24_sl2ut")]
-
-[node name="Hurt" parent="HurtboxManager" instance=ExtResource("27_v78rb")]
+[node name="Run" parent="HurtboxManager" node_paths=PackedStringArray("health_component") instance=ExtResource("24_sl2ut")]
+health_component = NodePath("../../HealthComponent")
 
 [node name="StateManager" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("25_5icjn")]
 initial_state = NodePath("Idle")
@@ -273,7 +285,6 @@ run_state = NodePath("../Run")
 attacking_state = NodePath("../Attacking")
 health_component = NodePath("../../HealthComponent")
 input_manager = NodePath("../../InputManager")
-test_attack = ExtResource("33_47ucb")
 sprite = NodePath("../../Sprite")
 character = NodePath("../..")
 hurtbox_manager = NodePath("../../HurtboxManager")
@@ -289,9 +300,8 @@ sprite = NodePath("../../Sprite")
 character = NodePath("../..")
 hurtbox_manager = NodePath("../../HurtboxManager")
 
-[node name="Hurt" type="Node2D" parent="StateManager" node_paths=PackedStringArray("hurtbox", "idle_state", "sprite", "character", "hurtbox_manager")]
+[node name="Hurt" type="Node2D" parent="StateManager" node_paths=PackedStringArray("idle_state", "sprite", "character", "hurtbox_manager")]
 script = ExtResource("28_if4x7")
-hurtbox = NodePath("../../HurtboxManager/Hurt")
 idle_state = NodePath("../Idle")
 sprite = NodePath("../../Sprite")
 character = NodePath("../..")
@@ -304,8 +314,8 @@ animation_manager = NodePath("../../AnimationManager")
 idle_state = NodePath("../Idle")
 action1 = &"flamethrower"
 action2 = &"fireball"
-projectile1 = ExtResource("32_e18d5")
-projectile2 = ExtResource("33_47ucb")
+projectile1 = ExtResource("32_j4vra")
+projectile2 = SubResource("Resource_ca3nd")
 sprite = NodePath("../../Sprite")
 character = NodePath("../..")
 hurtbox_manager = NodePath("../../HurtboxManager")

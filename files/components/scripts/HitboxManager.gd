@@ -1,9 +1,15 @@
 extends Node2D
 class_name HitboxManager
 
+var attack : Attack
 var facing_h : Vector2 = Vector2.RIGHT
 var hitbox : Hitbox 
 var is_disabled : bool = false
+
+func _ready() -> void:
+	for child in get_children():
+		if child is Hitbox:
+			child.attack = owner
 
 func change_to(new_hitbox) -> void:
 	if hitbox:

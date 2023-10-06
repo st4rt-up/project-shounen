@@ -12,10 +12,9 @@ class_name HealthComponent
 var health: int
 var invuln_timer: int
 
-var attack: Attack
-
 func _physics_process(delta):
 	if invuln_timer > 0:
+		# print(invuln_timer)
 		invuln_timer -= 1
 		
 		if invuln_timer == 0:
@@ -23,29 +22,22 @@ func _physics_process(delta):
 	
 func _ready() -> void:
 	health = MAX_HEALTH
-	
-func hitbox_enter(attack: Attack) -> void:
-	self.attack = attack
 
-func hitbox_leave(attack: Attack) -> void:
-	self.attack = null
-	
-func take_damage(attack: Attack) -> void:
+func get_hit(attack: Attack) -> void:
 	if invuln_timer > 0:
 		return
-		
-		
-	health -= attack.attack_damage
 	
-	if hurtbox_manager:
+	health -= attack.attack_effect.attack_damage
+	
+	if health <= 0:
+		return
+		
+	if hurtbox_manager and attack.attack_effect and attack.attack_effect.invuln > 0:
+		invuln_timer = attack.attack_effect.invuln
+		sprite.flicker(float(invuln_timer) / 60)
 		hurtbox_manager.disable()
 	
 	if hurt_state:
 		hurt_state.attack = attack
 		state_manager.change_to(hurt_state)
-		invuln_timer = attack.hitstun + hit_delay # + 60
-		sprite.flicker(invuln_timer / 60)
-		
-	if health <= 0:
-		# death logic
-		pass
+	return

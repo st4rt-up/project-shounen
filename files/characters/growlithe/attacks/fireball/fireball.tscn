@@ -50,10 +50,10 @@ animations = [{
 "speed": 8.0
 }]
 
-[node name="fireball" type="Node2D" node_paths=PackedStringArray("hitbox_manager", "sprite")]
+[node name="fireball" type="Node2D" node_paths=PackedStringArray("sprite", "hitbox_manager")]
 script = ExtResource("1_qn845")
-hitbox_manager = NodePath("HitboxManager")
 sprite = NodePath("Sprite")
+hitbox_manager = NodePath("HitboxManager")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_yvc7n")

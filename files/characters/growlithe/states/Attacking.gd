@@ -42,6 +42,12 @@ func fireball_init() -> void:
 	# character.velocity = character.facing_h * 180
 	return
 	
+func move_during_fireball() -> void:
+	var attacking_vel = 300
+	if character.facing_h == Vector2.LEFT:
+		attacking_vel = -attacking_vel
+	character.velocity.x = attacking_vel
+	
 func roar_init() -> void:
 	return
 	
@@ -60,16 +66,39 @@ func shoot_flamethrower() -> void:
 func shoot_proj(projectile: AttackResource) -> void:
 	var proj = load(projectile.path)
 	var instance = proj.instantiate()
-	instance.facing_h = character.facing_h
 	
 	instance.attack_damage = projectile.attack_damage
 	instance.knockback_force = projectile.knockback_force
+	instance.knockback_dir = projectile.knockback_dir
 	instance.hitstun = projectile.hitstun
+	instance.invuln = projectile.invuln
 	instance.lifetime = projectile.lifetime
-	instance.attack_vel = projectile.attack_velocity
-	
+	instance.attack_vel = projectile.attack_vel
 	instance.h_offset = projectile.h_offset
 	instance.v_offset = projectile.v_offset
+	
+	instance.facing = projectile.facing
+	instance.facing.x = character.facing_h.x
+	
+	instance.position = owner.position
+	get_tree().root.add_child(instance)
+
+func shoot_proj_dir(projectile: AttackResource, dir: Vector2, h_offset := 0, v_offset := 0) -> void:
+	var proj = load(projectile.path)
+	var instance = proj.instantiate()
+	
+	instance.attack_damage = projectile.attack_damage
+	instance.knockback_force = projectile.knockback_force
+	instance.knockback_dir = projectile.knockback_dir
+	instance.hitstun = projectile.hitstun
+	instance.invuln = projectile.invuln
+	instance.lifetime = projectile.lifetime
+	instance.attack_vel = projectile.attack_vel
+	instance.h_offset = projectile.h_offset
+	instance.v_offset = projectile.v_offset
+	
+	instance.facing = dir
+	instance.facing.x = character.facing_h.x
 	
 	instance.position = owner.position
 	get_tree().root.add_child(instance)

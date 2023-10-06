@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="AttackResource" load_steps=4 format=3 uid="uid://ddgy3m3xpx5cu"]
+
+[ext_resource type="Script" path="res://files/components/resources/AttackResource.gd" id="1_5n5m8"]
+[ext_resource type="Script" path="res://files/components/resources/AttackEffectResource.gd" id="1_yg4s4"]
+
+[sub_resource type="Resource" id="Resource_3lawm"]
+script = ExtResource("1_yg4s4")
+attack_damage = 0
+hitstun = 60
+invuln = 40
+
+[resource]
+script = ExtResource("1_5n5m8")
+path = "res://files/characters/growlithe/attacks/fireball/fireball.tscn"
+projOwner = null
+attack_effect = SubResource("Resource_3lawm")
+lifetime = 120
+attack_vel = 2.5
+h_offset = 20
+v_offset = 0
+facing = Vector2(1, 0)

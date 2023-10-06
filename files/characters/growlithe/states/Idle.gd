@@ -10,24 +10,18 @@ extends State
 @export var input_manager: InputManager
 @onready var inputs = input_manager.inputs
 
+@export var test_attack : AttackResource
 
 func enter() -> void:
 	sprite.play("idle")
 	hurtbox_manager.change_to(hurtbox)
 
-func physics_process(delta) -> void:
-	# placeholder hurt state testing code
-	if Input.is_action_pressed("attack_1"):
-		
-		var attack = Attack.new()
-		attack.hitstun = 60
-		attack.facing_h = character.facing_h * -1
-		attack.knockback_force = 250
-		health_component.take_damage(attack)
-	
+func physics_process(delta) -> void:	
 	if input_manager.any_action_button():
 		print("true")
 		exit(attacking_state)
 	
 	if input_manager.any_directionals() and fsm.state == self:
 		exit(run_state)
+
+

@@ -1,9 +1,17 @@
 extends Node2D
 class_name HurtboxManager
 
+@export var health_component : HealthComponent
+
+var projOwner : Node2D
 var facing_h : Vector2 = Vector2.RIGHT
 var hurtbox : Hurtbox 
 var is_disabled : bool = false
+
+func _ready() -> void:
+	for child in get_children():
+		if child is Hurtbox:
+			child.health_component = health_component
 
 func change_to(new_hurtbox) -> void:
 	if hurtbox:
@@ -32,5 +40,5 @@ func enable() -> void:
 func disable() -> void:
 	hurtbox.disable()
 	is_disabled = true
-	
+
 

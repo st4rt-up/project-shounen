@@ -2,22 +2,18 @@ extends Attack
 
 @export var hitbox_manager : HitboxManager
 
-func _ready() -> void:
-	sprite.play()
+func frame_0() -> void:
+	sprite.play("start")
 	hitbox_manager.change_to("start")
 	
-	if !sprite:
-		print("Sprite not set for flamethrower!")
-	
-	if facing_h == Vector2.RIGHT:
+	if facing.x > 0: # facing right
 		face_right()
-		position.x += h_offset
-	elif facing_h == Vector2.LEFT:
+	elif facing.x < 0: # facing left
 		face_left()
-		position.x -= h_offset
-	elif facing:
-		return
-		
+
+func frame_1() -> void:
+	return
+
 func _physics_process(delta) -> void:
 	advance_frame(delta)
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d2x4ec57qocyt"]
+[gd_scene load_steps=12 format=3 uid="uid://d2x4ec57qocyt"]
 
 [ext_resource type="Script" path="res://files/characters/growlithe/attacks/roar/roar.gd" id="1_mb7fs"]
 [ext_resource type="Texture2D" uid="uid://bvv4f2gyekk2m" path="res://files/characters/growlithe/attacks/roar/sprites/growlithe_3_1.png" id="2_70myp"]
@@ -25,6 +25,15 @@ animations = [{
 "texture": ExtResource("5_4cpdv")
 }, {
 "duration": 1.0,
+"texture": ExtResource("3_h7a74")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_u781n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_4cpdv")
+}, {
+"duration": 1.0,
 "texture": ExtResource("6_wyt20")
 }, {
 "duration": 1.0,
@@ -32,17 +41,41 @@ animations = [{
 }],
 "loop": true,
 "name": &"start",
-"speed": 5.0
+"speed": 4.0
 }]
 
-[node name="roar" type="Node2D" node_paths=PackedStringArray("hitbox_manager", "sprite")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6pxwe"]
+size = Vector2(35, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h5ox7"]
+size = Vector2(62, 29)
+
+[node name="roar" type="Node2D"]
 script = ExtResource("1_mb7fs")
-hitbox_manager = NodePath("HitboxManager")
-sprite = NodePath("Sprite")
+hitbox_manager = Object(Node2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"script":Resource("res://files/components/scripts/HitboxManager.gd"))
+
+sprite = Object(AnimatedSprite2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"sprite_frames":SubResource("SpriteFrames_yjslf"),"animation":&"start","autoplay":"","frame":8,"frame_progress":0.16307,"speed_scale":1.0,"centered":true,"offset":Vector2(0, 0),"flip_h":false,"flip_v":false,"script":null)
+
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_yjslf")
 animation = &"start"
-frame_progress = 0.559884
+frame = 8
+frame_progress = 0.16307
 
 [node name="HitboxManager" parent="." instance=ExtResource("8_0jlaq")]
+
+[node name="start" type="Area2D" parent="HitboxManager"]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxManager/start"]
+position = Vector2(-1.5, -1)
+shape = SubResource("RectangleShape2D_6pxwe")
+debug_color = Color(0.984314, 0.113725, 0.109804, 0.419608)
+
+[node name="end" type="Area2D" parent="HitboxManager"]
+
+[node name="1" type="CollisionShape2D" parent="HitboxManager/end"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_h5ox7")
+debug_color = Color(0.984314, 0.113725, 0.109804, 0.419608)

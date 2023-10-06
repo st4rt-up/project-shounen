@@ -28,12 +28,5 @@ func physics_process(delta) -> void:
 	if !input_manager.any_directionals() and fsm.state == self:
 		exit(idle_state)
 		
-	if Input.is_action_pressed("attack_1"):
-		var attack = Attack.new()
-		attack.hitstun = 60
-		attack.knockback_force = 250
-		attack.facing_h = character.facing_h * -1
-		health_component.take_damage(attack)
-		
 	if input_manager.any_action_button() and fsm.state == self:
 		exit(attacking_state)

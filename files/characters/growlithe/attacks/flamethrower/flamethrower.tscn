@@ -33,10 +33,10 @@ size = Vector2(139, 36)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_48iau"]
 size = Vector2(117, 59)
 
-[node name="flamethrower" type="Node2D" node_paths=PackedStringArray("hitbox_manager", "sprite")]
+[node name="flamethrower" type="Node2D" node_paths=PackedStringArray("sprite", "hitbox_manager")]
 script = ExtResource("1_3klhc")
-hitbox_manager = NodePath("HitboxManager")
 sprite = NodePath("Sprite")
+hitbox_manager = NodePath("HitboxManager")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_1dbbk")
